@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './src/db/connectDb.js'
 import userRouter from './src/routes/userRouter.js'
+import dealsRouter from './src/routes/dealsRouter.js'
 
 const app = express()
 dotenv.config()
@@ -14,6 +15,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/auth', userRouter)
+app.use('/api/deals', dealsRouter)
 
 app.listen(PORT, () => {
   console.log(`server is listening on ${PORT}`)
