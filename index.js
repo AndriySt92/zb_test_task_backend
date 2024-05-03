@@ -17,6 +17,10 @@ app.use(express.json())
 app.use('/api/auth', userRouter)
 app.use('/api/deals', dealsRouter)
 
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'Work'})
+})
+
 app.listen(PORT, () => {
   console.log(`server is listening on ${PORT}`)
 })
