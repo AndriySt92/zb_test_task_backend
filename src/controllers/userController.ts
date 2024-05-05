@@ -1,10 +1,13 @@
 import bcrypt from 'bcryptjs'
+import express from 'express'
 import { validationResult } from 'express-validator'
-import UserModel from '../models/userModel.js'
-import { generateToken } from '../helpers/generateToken.js'
+import UserModel from '../models/userModel.ts'
+import { generateToken } from '../helpers/generateToken.ts'
+import { RequestWithBody } from '../interfaces/commonTypes.ts'
+import { ILoginData, IRegisterData} from '../interfaces/userInteface.ts'
 
 const UserController = {
-  register: async (req, res) => {
+  register: async (req: RequestWithBody<IRegisterData>, res: express.Response) => {
     const { email, password, name } = req.body
 
     try {
@@ -35,7 +38,7 @@ const UserController = {
       res.status(500).json({ error: 'Internal server error' })
     }
   },
-  login: async (req, res) => {
+  login: async (req: RequestWithBody<ILoginData>, res: express.Response) => {
     const { email, password } = req.body
     try {
       const errors = validationResult(req)
@@ -44,7 +47,7 @@ const UserController = {
           message: 'Login data error.',
         })
       }
-
+      
       const user = await UserModel.findOne({ email })
 
       if (!user) {
@@ -69,7 +72,8 @@ const UserController = {
       res.status(500).json({ error: 'Internal server error' })
     }
   },
-  current: async (req, res) => {
+  current: async (req: express.Request, res: express.Response) => {
+    //@ts-ignore
     const { id } = req.user
 
     try {

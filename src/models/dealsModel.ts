@@ -1,6 +1,16 @@
 import mongoose from 'mongoose'
 
-const DealsSchema = new mongoose.Schema(
+export interface IDealsSchema {
+  title: string
+  img_url: String
+  price: Number
+  sold: Number
+  ticket: Number
+  yield: Number
+  days_left:Number
+}
+
+const DealsSchema = new mongoose.Schema<IDealsSchema>(
   {
     title: {
       type: String,

@@ -1,6 +1,6 @@
 import express from 'express'
-import DealsController from '../controllers/dealsController.js'
-import { authenticateToken } from '../middleware/authenticate.js'
+import DealsController from '../controllers/dealsController.ts'
+import { authenticateToken } from '../middleware/authenticate.ts'
 
 const router = express.Router()
 

@@ -1,7 +1,8 @@
-import DealsModel from '../models/dealsModel.js'
+import exporess from 'express'
+import DealsModel from '../models/dealsModel.ts'
 
 const DealsController = {
-  getAll: async (req, res) => {
+  getAll: async (req: exporess.Request, res: exporess.Response) => {
     try {
       const deals = await DealsModel.find().sort('-createdAt')
 
